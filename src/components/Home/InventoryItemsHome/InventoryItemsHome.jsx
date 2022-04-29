@@ -4,6 +4,7 @@ import "./InventoryItemsHome.css";
 
 const data = [
   {
+    _id: 1,
     name: "Name",
     quantity: 4,
     supplier: "supplier company",
@@ -12,6 +13,7 @@ const data = [
     img: "https://i.ibb.co/qmHyT77/grape.webp",
   },
   {
+    _id: 2,
     name: "Name",
     quantity: 4,
     supplier: "supplier company",
@@ -20,6 +22,7 @@ const data = [
     img: "https://i.ibb.co/7kbWJhj/date.webp",
   },
   {
+    _id: 3,
     name: "Name",
     quantity: 4,
     supplier: "supplier company",
@@ -28,6 +31,7 @@ const data = [
     img: "https://i.ibb.co/fY2nH6Y/banana.webp",
   },
   {
+    _id: 4,
     name: "Name",
     quantity: 4,
     supplier: "supplier company",
@@ -36,6 +40,7 @@ const data = [
     img: "https://i.ibb.co/yPyV0cL/coconut.webp",
   },
   {
+    _id: 5,
     name: "Name",
     quantity: 4,
     supplier: "supplier company",
@@ -44,6 +49,7 @@ const data = [
     img: "https://i.ibb.co/y50Lpsw/guava.webp",
   },
   {
+    _id: 6,
     name: "Name",
     quantity: 4,
     supplier: "supplier company",
@@ -62,14 +68,7 @@ const InventoryItemsHome = () => {
       <div className="fruits-container row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {data.map((f, i) => (
           <div key={i} className="col">
-            <FruitsCard
-              name="Grapes"
-              price="40"
-              image={f.img}
-              desc={f.desc}
-              quantity={f.quantity}
-              supplier={f.supplier}
-            />
+            <FruitsCard fruit={f} />
           </div>
         ))}
       </div>
