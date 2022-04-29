@@ -31,7 +31,7 @@ const FruitsCard = ({ fruit }) => {
           </div>
         </div>
         <div className="col pe-0 d-flex flex-column justify-content-between">
-          <img className="w-100" src={fruit.image} alt="" />
+          <img className="w-100" src={fruit.img} alt="" />
           <p className="mb-1 fruit-desc pb-3">{fruit.desc}</p>
         </div>
       </div>
