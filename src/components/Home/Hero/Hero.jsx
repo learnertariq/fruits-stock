@@ -2,17 +2,13 @@ import React from "react";
 import "./Hero.css";
 import { Carousel } from "react-bootstrap";
 
-import img1 from "../../../assets/carousel/img-1.webp";
-import img2 from "../../../assets/carousel/img-2.webp";
-import img3 from "../../../assets/carousel/img-3.webp";
-
 const Hero = () => {
   return (
     <Carousel className="shadow shadow-lg">
       <Carousel.Item>
         <img
           className="d-block w-100 carousel-img"
-          src={img1}
+          src="https://i.ibb.co/w0DpQMP/img-1.webp"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -23,7 +19,7 @@ const Hero = () => {
       <Carousel.Item>
         <img
           className="d-block w-100 carousel-img"
-          src={img2}
+          src="https://i.ibb.co/ryXHfZz/img-2.webp"
           alt="Second slide"
         />
 
@@ -35,7 +31,7 @@ const Hero = () => {
       <Carousel.Item>
         <img
           className="d-block w-100 carousel-img"
-          src={img3}
+          src="https://i.ibb.co/0ZxfJfK/img-3.webp"
           alt="Third slide"
         />
 
