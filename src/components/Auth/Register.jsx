@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import "./Login.css";
+import "./Auth.css";
 
-const Login = () => {
+const Register = () => {
   const [userState, setUserState] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -23,6 +24,17 @@ const Login = () => {
 
   return (
     <Form className="form mx-auto mt-5 px-2 py-5 p-sm-5" onSubmit={handleLogin}>
+      <h1 className="text-center text-primary mb-3">Register</h1>
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          onBlur={handleBlur}
+          name="name"
+          type="text"
+          placeholder="Enter Your Name"
+        />
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -53,4 +65,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
