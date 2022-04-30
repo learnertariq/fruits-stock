@@ -7,6 +7,7 @@ import Login from "./components/Auth/Login";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Register from "./components/Auth/Register";
 import Logout from "./components/Auth/Logout";
+import RequireAuth from "./components/Auth/RequireAuth";
 
 function App() {
   return (
@@ -14,7 +15,14 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/inventory/:id" element={<ProductDetails />} />
+        <Route
+          path="/inventory/:id"
+          element={
+            <RequireAuth>
+              <ProductDetails />
+            </RequireAuth>
+          }
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import {
   useCreateUserWithEmailAndPassword,
@@ -13,12 +14,23 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const location = useLocation();
 
   ///////// Firebase methods
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   ///////// Firebase methods
+
+  useEffect(() => {
+    if (user) {
+      navigate(location?.state?.from?.pathname || "/", {
+        state: location?.state,
+        replace: true,
+      });
+    }
+  }, [user]);
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
