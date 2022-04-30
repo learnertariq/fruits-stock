@@ -9,7 +9,6 @@ const InventoryItemsHome = () => {
   useEffect(() => {
     const getFruits = async () => {
       const res = await axios.get("http://localhost:5000/fruits");
-      console.log(res.data);
       setFruits(res.data);
     };
 
