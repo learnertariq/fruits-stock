@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../utils/firebase.init";
 import "./Auth.css";
 
 const Register = () => {
@@ -9,6 +14,12 @@ const Register = () => {
     password: "",
   });
 
+  ///////// Firebase methods
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  ///////// Firebase methods
+
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
@@ -17,13 +28,20 @@ const Register = () => {
     setUserState(newUserState);
   };
 
-  const handleLogin = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(userState);
+
+    // creating user
+    await createUserWithEmailAndPassword(userState.email, userState.password);
+    // update display name
+    await updateProfile(user, { displayName: userState.name });
   };
 
   return (
-    <Form className="form mx-auto mt-5 px-2 py-5 p-sm-5" onSubmit={handleLogin}>
+    <Form
+      className="form mx-auto mt-5 px-2 py-5 p-sm-5"
+      onSubmit={handleRegister}
+    >
       <h1 className="text-center text-primary mb-3">Register</h1>
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Email address</Form.Label>
@@ -59,7 +77,7 @@ const Register = () => {
         variant="primary"
         type="submit"
       >
-        Login
+        Register
       </Button>
     </Form>
   );

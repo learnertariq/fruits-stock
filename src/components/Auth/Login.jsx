@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../utils/firebase.init";
 import "./Auth.css";
 
 const Login = () => {
@@ -7,6 +9,11 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  ///////////////// Firebase methods
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  ///////////////// Firebase methods
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
@@ -16,9 +23,10 @@ const Login = () => {
     setUserState(newUserState);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(userState);
+    // sign in user
+    await signInWithEmailAndPassword(userState.email, userState.password);
   };
 
   return (
