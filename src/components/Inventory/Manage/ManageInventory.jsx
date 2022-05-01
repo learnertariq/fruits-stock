@@ -14,7 +14,12 @@ const ManageInventory = () => {
     getFruits();
   }, []);
   const handleDelete = async (id) => {
-    console.log(id);
+    const res = await axios.delete(`http://localhost:5000/fruits/${id}`);
+
+    const deletedFruit = res.data;
+    const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);
+    setFruits(newFruits);
+    console.log(deletedFruit);
   };
   return (
     <section className="container">
