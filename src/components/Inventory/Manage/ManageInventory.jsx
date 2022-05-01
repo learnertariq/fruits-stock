@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./ManageInventory.css";
 
 const ManageInventory = () => {
@@ -52,6 +53,11 @@ const ManageInventory = () => {
           </tbody>
         </Table>
       </article>
+      <div className="text-center my-4">
+        <Link to="/inventory/new" className="btn btn-primary">
+          Add New Item
+        </Link>
+      </div>
     </section>
   );
 };

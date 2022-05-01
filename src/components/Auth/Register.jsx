@@ -3,9 +3,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Form, Spinner } from "react-bootstrap";
 import {
   useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../utils/firebase.init";
+import googleLogo from "../../assets/auth/google.png";
 import "./Auth.css";
 
 const Register = () => {
@@ -21,16 +23,18 @@ const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+    useSignInWithGoogle(auth);
   ///////// Firebase methods
 
   useEffect(() => {
-    if (user) {
+    if (user || userGoogle) {
       navigate(location?.state?.from?.pathname || "/", {
         state: location?.state,
         replace: true,
       });
     }
-  }, [user]);
+  }, [user, userGoogle]);
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
@@ -49,7 +53,7 @@ const Register = () => {
     await updateProfile(user, { displayName: userState.name });
   };
 
-  if (loading || updating) {
+  if (loading || updating || loadingGoogle) {
     return (
       <div className="container text-center m-5">
         <Spinner animation="border" variant="info" />;
@@ -58,50 +62,62 @@ const Register = () => {
   }
 
   return (
-    <Form
-      className="form mx-auto mt-5 px-2 py-5 p-sm-5"
-      onSubmit={handleRegister}
-    >
-      <h1 className="text-center text-primary mb-3">Register</h1>
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          onBlur={handleBlur}
-          name="name"
-          type="text"
-          placeholder="Enter Your Name"
-        />
-      </Form.Group>
+    <div className="form-container mx-auto mt-5 px-2 py-5 p-sm-5">
+      <Form className="form" onSubmit={handleRegister}>
+        <h1 className="text-center text-primary mb-3">Register</h1>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            onBlur={handleBlur}
+            name="name"
+            type="text"
+            placeholder="Enter Your Name"
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          onBlur={handleBlur}
-          name="email"
-          type="email"
-          placeholder="Enter email"
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            onBlur={handleBlur}
+            name="email"
+            type="email"
+            placeholder="Enter email"
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          onBlur={handleBlur}
-          name="password"
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Group>
-      {(error || updateError) && <p className="text-error">{error.message}</p>}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            onBlur={handleBlur}
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Group>
+        {(error || updateError || errorGoogle) && (
+          <p className="text-error">{error.message}</p>
+        )}
 
-      <Button
-        className="form-btn fw-bold px-4 py-2 text-uppercase"
-        variant="primary"
-        type="submit"
-      >
-        Register
-      </Button>
-    </Form>
+        <Button
+          className="form-btn fw-bold px-4 py-2 text-uppercase"
+          variant="primary"
+          type="submit"
+        >
+          Register
+        </Button>
+      </Form>
+      <div className="text-center my-4 border-top pt-3">
+        <Button
+          className="form-btn fw-bold px-4 py-2 text-uppercase bg-white"
+          variant="outline"
+          type="submit"
+          onClick={() => signInWithGoogle()}
+        >
+          <img className="me-2" src={googleLogo} alt="Google logo" />
+          <span className="align-middle">Login with Google</span>
+        </Button>
+      </div>
+    </div>
   );
 };
 
