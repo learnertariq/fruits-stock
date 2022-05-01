@@ -22,8 +22,8 @@ const InventoryItemsHome = () => {
         Fruits Stock
       </h1>
       <div className="fruits-container row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-        {fruits.map((f, i) => (
-          <div key={i} className="col">
+        {fruits.slice(0, 6).map((f) => (
+          <div key={f._id} className="col">
             <FruitsCard fruit={f} />
           </div>
         ))}
