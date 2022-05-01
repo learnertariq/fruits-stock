@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
@@ -49,6 +49,14 @@ const Register = () => {
     await updateProfile(user, { displayName: userState.name });
   };
 
+  if (loading || updating) {
+    return (
+      <div className="container text-center m-5">
+        <Spinner animation="border" variant="info" />;
+      </div>
+    );
+  }
+
   return (
     <Form
       className="form mx-auto mt-5 px-2 py-5 p-sm-5"
@@ -84,6 +92,8 @@ const Register = () => {
           placeholder="Password"
         />
       </Form.Group>
+      {(error || updateError) && <p className="text-error">{error.message}</p>}
+
       <Button
         className="form-btn fw-bold px-4 py-2 text-uppercase"
         variant="primary"

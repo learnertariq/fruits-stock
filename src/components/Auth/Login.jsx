@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../utils/firebase.init";
 import "./Auth.css";
@@ -41,6 +41,14 @@ const Login = () => {
     await signInWithEmailAndPassword(userState.email, userState.password);
   };
 
+  if (loading) {
+    return (
+      <div className="container text-center m-5">
+        <Spinner animation="border" variant="info" />;
+      </div>
+    );
+  }
+
   return (
     <Form className="form mx-auto mt-5 px-2 py-5 p-sm-5" onSubmit={handleLogin}>
       <h1 className="text-center text-primary mb-3">Login</h1>
@@ -64,6 +72,7 @@ const Login = () => {
           placeholder="Password"
         />
       </Form.Group>
+      {error && <p className="text-error">{error.message}</p>}
       <Button
         className="form-btn fw-bold px-4 py-2 text-uppercase"
         variant="primary"

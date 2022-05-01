@@ -3,16 +3,14 @@ import axios from "axios";
 import { useParams } from "react-router";
 import "./ProductDetails.css";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     const getProduct = async () => {
       const res = await axios.get(`http://localhost:5000/fruits/${id}`);
-      console.log(res);
       setProduct(res.data);
     };
     getProduct();
@@ -25,10 +23,23 @@ const ProductDetails = () => {
     setProduct(res.data);
   };
 
+  const handleReStock = async (e) => {
+    e.preventDefault();
+
+    const newStock = parseInt(e.target.newStock.value);
+
+    if (isNaN(newStock) || newStock < 0) return;
+
+    const res = await axios.patch(`http://localhost:5000/fruits/${id}`, {
+      quantity: product.quantity + newStock,
+    });
+    setProduct(res.data);
+  };
+
   return (
     <section className="container">
-      <h1>Product Details</h1>
-      <article className="product-details">
+      <h1 className="text-center text-success mt-2 mb-4">Product Details</h1>
+      <article className="product-details mx-auto p-0 p-sm-5">
         <div className="header d-flex justify-content-center mb-3">
           <img
             className="product-details-img bg-light"
@@ -84,6 +95,24 @@ const ProductDetails = () => {
             </Button>
           </div>
         </div>
+        <Form className="mt-5" onSubmit={handleReStock}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Re-Stock Fruit</Form.Label>
+            <Form.Control
+              name="newStock"
+              type="number"
+              placeholder="Quantity to increase"
+            />
+          </Form.Group>
+
+          <Button
+            className="form-btn fw-bold px-4 py-2 text-uppercase"
+            variant="primary"
+            type="submit"
+          >
+            Re-Stock (◑‿◐)
+          </Button>
+        </Form>
       </article>
     </section>
   );
