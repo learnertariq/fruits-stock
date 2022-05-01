@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import FruitsCard from "./FruitsCard/FruitsCard";
 import "./InventoryItemsHome.css";
 
@@ -26,6 +27,11 @@ const InventoryItemsHome = () => {
             <FruitsCard fruit={f} />
           </div>
         ))}
+      </div>
+      <div className="text-center my-4">
+        <Link to="/inventory/manage" className="btn btn-warning">
+          Manage Inventories
+        </Link>
       </div>
     </section>
   );

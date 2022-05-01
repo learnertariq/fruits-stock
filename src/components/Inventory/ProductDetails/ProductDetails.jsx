@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import "./ProductDetails.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
@@ -39,7 +40,7 @@ const ProductDetails = () => {
   return (
     <section className="container">
       <h1 className="text-center text-success mt-2 mb-4">Product Details</h1>
-      <article className="product-details mx-auto p-0 p-sm-5">
+      <article className="product-details mx-auto p-0 p-sm-5 pb-sm-0">
         <div className="header d-flex justify-content-center mb-3">
           <img
             className="product-details-img bg-light"
@@ -114,6 +115,11 @@ const ProductDetails = () => {
           </Button>
         </Form>
       </article>
+      <div className="text-center my-4">
+        <Link to="/inventory/manage" className="btn btn-warning">
+          Manage Inventories
+        </Link>
+      </div>
     </section>
   );
 };
