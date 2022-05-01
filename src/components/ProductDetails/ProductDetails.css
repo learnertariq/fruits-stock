@@ -1,0 +1,8 @@
+.product-details {
+  max-width: 350px;
+}
+
+.product-details-img {
+  border-radius: 50%;
+  background-color: red;
+}
