@@ -10,6 +10,7 @@ import auth from "../../utils/firebase.init";
 import googleLogo from "../../assets/auth/google.png";
 import "./Auth.css";
 import { toast } from "react-toastify";
+import userService from "../../service/userService";
 
 const Register = () => {
   const [userState, setUserState] = useState({
@@ -31,6 +32,7 @@ const Register = () => {
   useEffect(() => {
     if (user || userGoogle) {
       toast("Sent verification email");
+      userService.login({ email: userState.email });
 
       navigate(location?.state?.from?.pathname || "/", {
         state: location?.state,

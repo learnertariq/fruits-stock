@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <Navbar className="shadow shadow-lg" bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to="/">
           <img className="nav-logo" src={logo} alt="" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

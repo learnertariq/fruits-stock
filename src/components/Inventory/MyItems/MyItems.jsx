@@ -12,7 +12,7 @@ const MyItems = () => {
 
   useEffect(() => {
     const getFruits = async () => {
-      const res = await http.get(`/fruits?email=${user?.email}`);
+      const res = await http.get(`/fruits/secured`);
       setFruits(res.data);
     };
     getFruits();
@@ -31,7 +31,7 @@ const MyItems = () => {
 
   return (
     <section className="container">
-      <h1 className="text-center text-success mt-2 mb-4">Manage Inventory</h1>
+      <h1 className="text-center text-success mt-2 mb-4">My Items</h1>
       <article className="all-products mx-auto">
         <Table striped bordered hover>
           <thead>

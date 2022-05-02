@@ -1,9 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import http from "../../../service/http";
-import auth from "../../../utils/firebase.init";
 import "./AddNewFruit.css";
 
 const AddNewFruit = () => {
@@ -15,7 +13,6 @@ const AddNewFruit = () => {
     desc: "",
     img: "",
   });
-  const [user, loading, error] = useAuthState(auth);
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
@@ -27,10 +24,10 @@ const AddNewFruit = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    const fruitWithEmail = { ...fruit, email: user.email };
 
     const getFruits = async () => {
-      const res = await http.post("/fruits", fruitWithEmail);
+      const res = await http.post("/fruits", fruit);
+      if (res.status === 200) toast("Successfully added item");
     };
     getFruits();
   };

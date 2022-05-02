@@ -9,6 +9,7 @@ import {
 import googleLogo from "../../assets/auth/google.png";
 import auth from "../../utils/firebase.init";
 import "./Auth.css";
+import userService from "../../service/userService";
 
 const Login = () => {
   const [userState, setUserState] = useState({
@@ -27,6 +28,8 @@ const Login = () => {
 
   useEffect(() => {
     if (user || userGoogle) {
+      userService.login({ email: userState.email });
+
       navigate(location?.state?.from?.pathname || "/", {
         state: location?.state,
         replace: true,
