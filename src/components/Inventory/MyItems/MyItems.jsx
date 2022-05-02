@@ -11,9 +11,7 @@ const MyItems = () => {
 
   useEffect(() => {
     const getFruits = async () => {
-      const res = await axios.get(
-        `http://localhost:5000/fruits?email=${user?.email}`
-      );
+      const res = await axios.get(`/fruits?email=${user?.email}`);
       setFruits(res.data);
     };
     getFruits();
@@ -23,7 +21,7 @@ const MyItems = () => {
     const agree = window.confirm("Are you sure to delete the item?");
     if (!agree) return;
 
-    const res = await axios.delete(`http://localhost:5000/fruits/${id}`);
+    const res = await axios.delete(`/fruits/${id}`);
 
     const deletedFruit = res.data;
     const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);

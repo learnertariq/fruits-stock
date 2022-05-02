@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import http from "../service/http";
 
 const useFruits = () => {
   const [fruits, setFruits] = useState([]);
   useEffect(() => {
     const getFruits = async () => {
-      const res = await axios.get("http://localhost:5000/fruits");
+      const res = await http.get("/fruits");
       setFruits(res.data);
     };
 

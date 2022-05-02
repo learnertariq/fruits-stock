@@ -12,7 +12,7 @@ const ManageInventory = () => {
     const agree = window.confirm("Are you sure to delete the item?");
     if (!agree) return;
 
-    const res = await axios.delete(`http://localhost:5000/fruits/${id}`);
+    const res = await axios.delete(`/fruits/${id}`);
 
     const deletedFruit = res.data;
     const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);

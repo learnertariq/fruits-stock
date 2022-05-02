@@ -29,10 +29,7 @@ const AddNewFruit = () => {
     const fruitWithEmail = { ...fruit, email: user.email };
 
     const getFruits = async () => {
-      const res = await axios.post(
-        "http://localhost:5000/fruits",
-        fruitWithEmail
-      );
+      const res = await axios.post("/fruits", fruitWithEmail);
     };
     getFruits();
   };

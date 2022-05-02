@@ -11,14 +11,14 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
-      const res = await axios.get(`http://localhost:5000/fruits/${id}`);
+      const res = await axios.get(`/fruits/${id}`);
       setProduct(res.data);
     };
     getProduct();
   }, []);
 
   const reduceQuantity = async () => {
-    const res = await axios.patch(`http://localhost:5000/fruits/${id}`, {
+    const res = await axios.patch(`/fruits/${id}`, {
       quantity: product.quantity - 1,
     });
     setProduct(res.data);
@@ -31,7 +31,7 @@ const ProductDetails = () => {
 
     if (isNaN(newStock) || newStock < 0) return;
 
-    const res = await axios.patch(`http://localhost:5000/fruits/${id}`, {
+    const res = await axios.patch(`/fruits/${id}`, {
       quantity: product.quantity + newStock,
     });
     setProduct(res.data);
