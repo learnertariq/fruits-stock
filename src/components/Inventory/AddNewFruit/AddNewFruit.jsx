@@ -101,7 +101,7 @@ const AddNewFruit = () => {
             placeholder="Image Url"
           />
         </Form.Group>
-        {/* {error && <p className="text-error">{error.message}</p>} */}
+        {/* {error && <p className="text-error">{error?.message}</p>} */}
         <Button
           className="form-btn fw-bold px-4 py-2 text-uppercase"
           variant="primary"

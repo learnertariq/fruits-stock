@@ -12,6 +12,8 @@ import ManageInventory from "./components/Inventory/Manage/ManageInventory";
 import AddNewFruit from "./components/Inventory/AddNewFruit/AddNewFruit";
 import MyItems from "./components/Inventory/MyItems/MyItems";
 import NotFound from "./components/NotFound/NotFound";
+import Blogs from "./components/Blogs/Blogs";
+import About from "./components/About/About";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route
           path="/inventory/manage"
           element={
@@ -51,10 +55,10 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/not-found" element={<NotFound />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

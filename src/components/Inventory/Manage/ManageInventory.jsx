@@ -2,18 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useFruits from "../../../hooks/useFruits";
 import "./ManageInventory.css";
 
 const ManageInventory = () => {
-  const [fruits, setFruits] = useState([]);
-  useEffect(() => {
-    const getFruits = async () => {
-      const res = await axios.get("http://localhost:5000/fruits");
-      setFruits(res.data);
-    };
+  const [fruits, setFruits] = useFruits();
 
-    getFruits();
-  }, []);
   const handleDelete = async (id) => {
     const agree = window.confirm("Are you sure to delete the item?");
     if (!agree) return;

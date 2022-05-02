@@ -2,19 +2,12 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useFruits from "../../../hooks/useFruits";
 import FruitsCard from "./FruitsCard/FruitsCard";
 import "./InventoryItemsHome.css";
 
 const InventoryItemsHome = () => {
-  const [fruits, setFruits] = useState([]);
-  useEffect(() => {
-    const getFruits = async () => {
-      const res = await axios.get("http://localhost:5000/fruits");
-      setFruits(res.data);
-    };
-
-    getFruits();
-  }, []);
+  const [fruits, setFruits] = useFruits();
 
   return (
     <section className="container mt-5">

@@ -21,7 +21,7 @@ const Register = () => {
 
   ///////// Firebase methods
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
     useSignInWithGoogle(auth);
@@ -56,7 +56,7 @@ const Register = () => {
   if (loading || updating || loadingGoogle) {
     return (
       <div className="container text-center m-5">
-        <Spinner animation="border" variant="info" />;
+        <Spinner animation="border" variant="info" />
       </div>
     );
   }
@@ -95,7 +95,9 @@ const Register = () => {
           />
         </Form.Group>
         {(error || updateError || errorGoogle) && (
-          <p className="text-error">{error.message}</p>
+          <p className="text-error">
+            {error?.message || updateError?.message || errorGoogle?.message}
+          </p>
         )}
 
         <Button

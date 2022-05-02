@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Form, Spinner } from "react-bootstrap";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -50,7 +51,7 @@ const Login = () => {
   if (loading || loadingGoogle) {
     return (
       <div className="container text-center m-5">
-        <Spinner animation="border" variant="info" />;
+        <Spinner animation="border" variant="info" />
       </div>
     );
   }
@@ -81,7 +82,9 @@ const Login = () => {
             />
           </Form.Group>
           {(error || errorGoogle) && (
-            <p className="text-error">{error.message}</p>
+            <p className="text-error">
+              {error?.message || errorGoogle?.message}
+            </p>
           )}
           <Button
             className="form-btn fw-bold px-4 py-2 text-uppercase"
