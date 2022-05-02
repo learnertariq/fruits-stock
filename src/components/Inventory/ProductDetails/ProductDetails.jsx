@@ -5,20 +5,21 @@ import "./ProductDetails.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import http from "../../../service/http";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
-      const res = await axios.get(`/fruits/${id}`);
+      const res = await http.get(`/fruits/${id}`);
       setProduct(res.data);
     };
     getProduct();
   }, []);
 
   const reduceQuantity = async () => {
-    const res = await axios.patch(`/fruits/${id}`, {
+    const res = await http.patch(`/fruits/${id}`, {
       quantity: product.quantity - 1,
     });
     setProduct(res.data);
@@ -31,7 +32,7 @@ const ProductDetails = () => {
 
     if (isNaN(newStock) || newStock < 0) return;
 
-    const res = await axios.patch(`/fruits/${id}`, {
+    const res = await http.patch(`/fruits/${id}`, {
       quantity: product.quantity + newStock,
     });
     setProduct(res.data);

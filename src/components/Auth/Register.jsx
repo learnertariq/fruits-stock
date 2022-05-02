@@ -30,6 +30,8 @@ const Register = () => {
 
   useEffect(() => {
     if (user || userGoogle) {
+      toast("Sent verification email");
+
       navigate(location?.state?.from?.pathname || "/", {
         state: location?.state,
         replace: true,
@@ -50,7 +52,6 @@ const Register = () => {
 
     // creating user
     await createUserWithEmailAndPassword(userState.email, userState.password);
-    toast("Sent verification email");
     // update display name
     await updateProfile(user, { displayName: userState.name });
   };

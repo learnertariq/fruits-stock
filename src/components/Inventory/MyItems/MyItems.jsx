@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
+import http from "../../../service/http";
 import auth from "../../../utils/firebase.init";
 import "./MyItems.css";
 
@@ -11,7 +12,7 @@ const MyItems = () => {
 
   useEffect(() => {
     const getFruits = async () => {
-      const res = await axios.get(`/fruits?email=${user?.email}`);
+      const res = await http.get(`/fruits?email=${user?.email}`);
       setFruits(res.data);
     };
     getFruits();
@@ -21,7 +22,7 @@ const MyItems = () => {
     const agree = window.confirm("Are you sure to delete the item?");
     if (!agree) return;
 
-    const res = await axios.delete(`/fruits/${id}`);
+    const res = await http.delete(`/fruits/${id}`);
 
     const deletedFruit = res.data;
     const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);

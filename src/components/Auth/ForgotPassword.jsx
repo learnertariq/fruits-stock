@@ -27,9 +27,10 @@ const ForgotPassword = () => {
           className="form"
           onSubmit={async (e) => {
             e.preventDefault();
-
-            await sendPasswordResetEmail(email);
-            toast("Sent reset email");
+            if (email) {
+              await sendPasswordResetEmail(email);
+              toast("Sent reset email");
+            }
           }}
         >
           <h1 className="text-center text-primary mb-3">Reset Password</h1>

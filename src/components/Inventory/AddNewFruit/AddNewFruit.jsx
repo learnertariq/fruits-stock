@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
+import http from "../../../service/http";
 import auth from "../../../utils/firebase.init";
 import "./AddNewFruit.css";
 
@@ -29,7 +30,7 @@ const AddNewFruit = () => {
     const fruitWithEmail = { ...fruit, email: user.email };
 
     const getFruits = async () => {
-      const res = await axios.post("/fruits", fruitWithEmail);
+      const res = await http.post("/fruits", fruitWithEmail);
     };
     getFruits();
   };

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useFruits from "../../../hooks/useFruits";
+import http from "../../../service/http";
 import "./ManageInventory.css";
 
 const ManageInventory = () => {
@@ -12,7 +13,7 @@ const ManageInventory = () => {
     const agree = window.confirm("Are you sure to delete the item?");
     if (!agree) return;
 
-    const res = await axios.delete(`/fruits/${id}`);
+    const res = await http.delete(`/fruits/${id}`);
 
     const deletedFruit = res.data;
     const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);
