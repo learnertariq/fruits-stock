@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Button, Form, Spinner } from "react-bootstrap";
 import {
   useSendPasswordResetEmail,
@@ -94,6 +94,18 @@ const Login = () => {
             Login
           </Button>
         </Form>
+
+        <div className="text-center pt-3">
+          <Button
+            as={Link}
+            to="/forgot-pass"
+            className="fw-bold text-danger"
+            variant="outline"
+            type="submit"
+          >
+            Forgot password?
+          </Button>
+        </div>
 
         <div className="text-center my-4 border-top pt-3">
           <Button

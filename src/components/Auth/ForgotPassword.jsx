@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import auth from "../../utils/firebase.init";
 
@@ -11,25 +11,34 @@ const ForgotPassword = () => {
     useSendPasswordResetEmail(auth);
   //////////////// firebase methods
 
-  const handleBlur = (e) => {
-    setEmail(e.target.email.value);
-  };
+  if (sending) {
+    return (
+      <div className="container text-center m-5">
+        <Spinner animation="border" variant="info" />
+      </div>
+    );
+  }
+
+  console.log(email);
+
   return (
     <section className="container">
       <div className="form-container mx-auto mt-5 px-2 py-5 p-sm-5">
         <Form
           className="form"
-          onSubmit={async () => {
-            await sendPasswordResetEmail("email");
+          onSubmit={async (e) => {
+            e.preventDefault();
+
+            await sendPasswordResetEmail(email);
             alert("Sent email");
           }}
         >
-          <h1 className="text-center text-primary mb-3">Login</h1>
+          <h1 className="text-center text-primary mb-3">Reset Password</h1>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
-              onBlur={handleBlur}
+              onBlur={(e) => setEmail(e.target.value)}
               name="email"
               type="email"
               placeholder="Enter email"
