@@ -57,7 +57,7 @@ const Register = () => {
 
   if (loading || updating || loadingGoogle) {
     return (
-      <div className="container text-center m-5">
+      <div className="container text-center my-5">
         <Spinner animation="border" variant="info" />
       </div>
     );

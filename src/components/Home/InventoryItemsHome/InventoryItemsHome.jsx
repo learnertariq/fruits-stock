@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useFruits from "../../../hooks/useFruits";
 import FruitsCard from "./FruitsCard/FruitsCard";
@@ -14,6 +15,12 @@ const InventoryItemsHome = () => {
       <h1 className="inventory-heading mx-auto px-5 py-2 bg-warning mb-3">
         Fruits Stock
       </h1>
+      {fruits.length <= 0 && (
+        <div className="container text-center my-5">
+          <Spinner animation="border" variant="info" />
+        </div>
+      )}
+
       <div className="fruits-container row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {fruits.slice(0, 6).map((f) => (
           <div key={f._id} className="col">
