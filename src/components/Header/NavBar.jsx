@@ -22,9 +22,20 @@ const NavBar = () => {
               Home
             </Nav.Link>
             {user && (
-              <Nav.Link as={Link} to="/logout">
-                Logout
-              </Nav.Link>
+              <>
+                <Nav.Link as={Link} to="/inventory/manage">
+                  Manage Items
+                </Nav.Link>
+                <Nav.Link as={Link} to="/inventory/new">
+                  Add Item
+                </Nav.Link>
+                <Nav.Link as={Link} to="/inventory/my_items">
+                  My Items
+                </Nav.Link>
+                <Nav.Link as={Link} to="/logout">
+                  Logout
+                </Nav.Link>
+              </>
             )}
             {!user && (
               <>

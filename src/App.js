@@ -10,6 +10,7 @@ import Logout from "./components/Auth/Logout";
 import RequireAuth from "./components/Auth/RequireAuth";
 import ManageInventory from "./components/Inventory/Manage/ManageInventory";
 import AddNewFruit from "./components/Inventory/AddNewFruit/AddNewFruit";
+import MyItems from "./components/Inventory/MyItems/MyItems";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
           element={
             <RequireAuth>
               <ManageInventory />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/inventory/my_items"
+          element={
+            <RequireAuth>
+              <MyItems />
             </RequireAuth>
           }
         />
