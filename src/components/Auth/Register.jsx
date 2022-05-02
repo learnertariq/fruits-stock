@@ -9,6 +9,7 @@ import {
 import auth from "../../utils/firebase.init";
 import googleLogo from "../../assets/auth/google.png";
 import "./Auth.css";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [userState, setUserState] = useState({
@@ -49,6 +50,7 @@ const Register = () => {
 
     // creating user
     await createUserWithEmailAndPassword(userState.email, userState.password);
+    toast("Sent verification email");
     // update display name
     await updateProfile(user, { displayName: userState.name });
   };

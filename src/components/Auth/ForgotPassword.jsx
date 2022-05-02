@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../utils/firebase.init";
 
 const ForgotPassword = () => {
@@ -19,8 +20,6 @@ const ForgotPassword = () => {
     );
   }
 
-  console.log(email);
-
   return (
     <section className="container">
       <div className="form-container mx-auto mt-5 px-2 py-5 p-sm-5">
@@ -30,7 +29,7 @@ const ForgotPassword = () => {
             e.preventDefault();
 
             await sendPasswordResetEmail(email);
-            alert("Sent email");
+            toast("Sent reset email");
           }}
         >
           <h1 className="text-center text-primary mb-3">Reset Password</h1>
