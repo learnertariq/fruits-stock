@@ -11,6 +11,7 @@ import RequireAuth from "./components/Auth/RequireAuth";
 import ManageInventory from "./components/Inventory/Manage/ManageInventory";
 import AddNewFruit from "./components/Inventory/AddNewFruit/AddNewFruit";
 import MyItems from "./components/Inventory/MyItems/MyItems";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
