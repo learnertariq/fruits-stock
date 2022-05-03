@@ -27,9 +27,13 @@ const BlogPosts = () => {
       <div className="all-posts row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
         {data.map((p, i) => (
           <div key={i} className="col">
-            <Card className="h-100">
-              <Card.Img variant="top" src={p.img} />
-              <Card.Body className="border-top">
+            <Card className="h-100 border-0">
+              <Card.Img
+                className="d-none d-lg-block"
+                variant="top"
+                src={p.img}
+              />
+              <Card.Body className="">
                 <Row>
                   <Col xs={3}>
                     <h6 className="text-center border-end border-3 border-warning">
