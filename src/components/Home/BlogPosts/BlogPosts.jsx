@@ -44,7 +44,7 @@ const BlogPosts = () => {
                   </Col>
                   <Col xs={9}>
                     <Card.Title className="mb-2">{p.title}</Card.Title>
-                    <Card.Text className="opacity-75">
+                    <Card.Text className="opacity-75 mb-1">
                       {p.desc.slice(0, 100)}
                     </Card.Text>
                     <Button
