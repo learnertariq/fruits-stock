@@ -90,7 +90,7 @@ const ProductDetails = () => {
             </Button>
           </div>
           <hr />
-          <div className="footer d-flex justify-content-between gap-2">
+          <div className="product-footer d-flex justify-content-between gap-2">
             <h2 className="text-danger mb-0">${product.price}</h2>
             <Button onClick={reduceQuantity} variant="danger" className="">
               Delivered

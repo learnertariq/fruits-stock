@@ -1,0 +1,8 @@
+.link-btn:hover {
+  opacity: 1 !important;
+}
+
+.card-img-top {
+  max-height: 100px;
+  object-fit: contain;
+}
