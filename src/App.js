@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound/NotFound";
 import Blogs from "./components/Blogs/Blogs";
 import About from "./components/About/About";
 import ForgotPassword from "./components/Auth/ForgotPassword";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }

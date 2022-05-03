@@ -1,0 +1,40 @@
+.footer {
+  background-color: #232323;
+  color: #fff;
+}
+
+.footer-logo {
+  width: 200px;
+  max-width: 100%;
+}
+
+.footer__heading {
+  width: 100%;
+  border: 1px solid #80808065;
+  border-left: 0;
+  border-right: 0;
+  padding: 7px 0;
+  font-size: 1.5rem;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.3;
+  font-size: 1.25rem;
+}
+
+.footer__link:hover {
+  color: #fff;
+  opacity: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .footer__heading {
+    font-size: 1.25rem;
+  }
+
+  .footer__link {
+    font-size: 1rem;
+  }
+}
