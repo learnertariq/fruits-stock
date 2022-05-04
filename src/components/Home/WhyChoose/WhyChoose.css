@@ -1,0 +1,32 @@
+.why-card {
+  border-radius: 10px;
+  background-color: #fceeff5b;
+  padding: 10px 5px;
+}
+
+.why-card__img-container {
+  background-color: #eeeeeedc;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 50%;
+}
+
+.middle-img {
+  transform: scale(1) !important;
+}
+
+.why-card__heading {
+}
+
+.why-card__body {
+}
+
+.middle-img {
+  width: 100% !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .middle-img {
+    transform: scale(1.5) !important;
+  }
+}
