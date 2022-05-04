@@ -8,8 +8,10 @@ const login = async ({ email }) => {
     email,
   });
 
-  console.log(headers);
   localStorage.setItem("x-auth-token", headers["x-auth-token"]);
+
+  // explicitly set header token for SPA
+  http.setToken(getToken());
 
   return data;
 };
