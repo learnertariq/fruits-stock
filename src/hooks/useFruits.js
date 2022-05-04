@@ -11,7 +11,7 @@ const useFruits = () => {
     };
 
     getFruits();
-  });
+  }, []);
 
   return [fruits, setFruits];
 };
