@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router";
 import "./ProductDetails.css";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import http from "../../../service/http";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
@@ -19,23 +21,40 @@ const ProductDetails = () => {
   }, []);
 
   const reduceQuantity = async () => {
-    const res = await http.patch(`/fruits/${id}`, {
-      quantity: product.quantity - 1,
-    });
-    setProduct(res.data);
+    setLoading(true);
+    try {
+      const res = await http.patch(`/fruits/${id}`, {
+        quantity: product.quantity - 1,
+      });
+      setProduct(res.data);
+      toast.success("Successfully decreased");
+    } catch (error) {
+      toast.error("Error decreasing");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReStock = async (e) => {
     e.preventDefault();
 
-    const newStock = parseInt(e.target.newStock.value);
+    setLoading(true);
+    try {
+      const newStock = parseInt(e.target.newStock.value);
 
-    if (isNaN(newStock) || newStock < 0) return;
+      if (isNaN(newStock) || newStock < 0) return;
 
-    const res = await http.patch(`/fruits/${id}`, {
-      quantity: product.quantity + newStock,
-    });
-    setProduct(res.data);
+      const res = await http.patch(`/fruits/${id}`, {
+        quantity: product.quantity + newStock,
+      });
+
+      setProduct(res.data);
+      toast.success("Successfully added");
+    } catch (error) {
+      toast.error("error adding");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,6 +82,11 @@ const ProductDetails = () => {
               </span>
             </div>
           </div>
+          {loading && (
+            <div className="container text-center">
+              <Spinner animation="border" variant="info" />
+            </div>
+          )}
           <div className="sub-nav mt-4 mb-2 d-flex justify-content-between gap-2">
             <Button variant="success" className="border border-success">
               Description
