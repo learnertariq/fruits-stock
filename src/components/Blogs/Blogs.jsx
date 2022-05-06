@@ -44,7 +44,13 @@ const data = [
     q: "What's the puspose of JWT and how does it work",
     img: jwtImg,
     a: [
-      "Node.js is a JavaScript runtime engine used on the server. And MongoDB is NOSQL database especially used with MERN stack development.",
+      "JWT (Json Web Token) is an open source library, We use Json Web Token to share secure information among frontend and backend.",
+      "JWT is for JSON based information exchanger. You can decode, verify and generate token with JWT",
+      "JWT contains a set of instruction claims. The instruction claim is used who the user is, what permission the user has and how long the token is valid",
+      "JWT has three parts. Header, Payload and Signature.",
+      "JWT Header contains some information",
+      "JWT Payload contains the claims used to share information",
+      "JWT Signature is used to verify that the claims is sent from the right person without altering the info insured with the JWT_Private_Key",
     ],
   },
 ];
