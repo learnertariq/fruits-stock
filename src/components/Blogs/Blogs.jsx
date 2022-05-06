@@ -24,20 +24,39 @@ const Blogs = () => {
                   <h3>Difference between JavaScript and NodeJs</h3>
                 </div>
                 <div className="a">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Fugit quibusdam perspiciatis dolor fuga facere, nostrum
-                  temporibus facilis deserunt odio modi omnis excepturi quia hic
-                  ipsam sapiente ullam iusto obcaecati molestias molestiae harum
-                  impedit asperiores repellat. Error, assumenda! Necessitatibus
-                  assumenda omnis dolorum pariatur incidunt, voluptatibus
-                  cupiditate. Aperiam ratione quo debitis eligendi. Lorem ipsum
-                  dolor sit, amet consectetur adipisicing elit. Fugit quibusdam
-                  perspiciatis dolor fuga facere, nostrum temporibus facilis
-                  deserunt odio modi omnis excepturi quia hic ipsam sapiente
-                  ullam iusto obcaecati molestias molestiae harum impedit
-                  asperiores repellat. Error, assumenda! Necessitatibus
-                  assumenda omnis dolorum pariatur incidunt, voluptatibus
-                  cupiditate. Aperiam ratione quo debitis eligendi.
+                  <ul>
+                    <li>
+                      JavaScript is a programming language running in any
+                      browser with the power of browser engine. And NodeJs is a
+                      JavaScript runtime engine.
+                    </li>
+                    <li>
+                      JavaScript runs on the client side. But NodeJs is used to
+                      create backend for the client.
+                    </li>
+                    <li>
+                      JavaScript runs on most of the modern browser like Google
+                      Chrome, Mozilla Firefox, Apple Safari, Opera, Dolphin
+                      Browser etc. But Nodejs uses Google Chrome's V8 engine to
+                      parse the JavaScript code to run outside of the browsers
+                      and mostly on the servers.
+                    </li>
+                    <li>
+                      Using JavaScript you can add HTML and CSS on the DOM. But
+                      using Nodejs you can create API to play with from the
+                      server.
+                    </li>
+                    <li>
+                      Angular, React.js, Vue.js, Ember.js, Meteor, etc are
+                      JavaScript frameworks/libraries. <br />
+                      Express.js, Kao.js, Socket.io, Nest.js, etc are Node.js
+                      frameworks.
+                    </li>
+                    <li>
+                      JavaScript is mainly used to create frontend. But Node.js
+                      is mainly used to create backend server.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
