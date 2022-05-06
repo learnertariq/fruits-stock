@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Button, Form, Spinner } from "react-bootstrap";
 import {
   useCreateUserWithEmailAndPassword,
@@ -31,7 +31,8 @@ const Register = () => {
 
   useEffect(() => {
     if (user || userGoogle) {
-      toast("Sent verification email");
+      if (user) toast("Sent verification email");
+
       userService.login({ email: userState.email });
 
       navigate(location?.state?.from?.pathname || "/", {
@@ -113,6 +114,17 @@ const Register = () => {
           Register
         </Button>
       </Form>
+      <div className="text-center pt-3">
+        <Button
+          as={Link}
+          to="/login"
+          className="fw-bold text-primary"
+          variant="outline"
+          type="submit"
+        >
+          Already have an account?
+        </Button>
+      </div>
       <div className="text-center my-4 border-top pt-3">
         <Button
           className="form-btn fw-bold px-4 py-2 text-uppercase bg-white"

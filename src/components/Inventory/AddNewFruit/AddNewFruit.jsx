@@ -14,7 +14,7 @@ const AddNewFruit = () => {
     img: "",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
 
   const handleBlur = (e) => {
     const { name, value } = e.target;

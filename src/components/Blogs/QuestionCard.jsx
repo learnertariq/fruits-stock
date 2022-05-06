@@ -16,8 +16,8 @@ const QuestionCard = ({ question }) => {
             </div>
             <div className="a">
               <ul>
-                {question.a.map((item) => (
-                  <li>{item}</li>
+                {question.a.map((item, index) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
             </div>

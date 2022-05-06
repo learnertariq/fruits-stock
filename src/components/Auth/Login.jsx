@@ -110,6 +110,18 @@ const Login = () => {
           </Button>
         </div>
 
+        <div className="text-center pt-3">
+          <Button
+            as={Link}
+            to="/register"
+            className="fw-bold text-primary"
+            variant="outline"
+            type="submit"
+          >
+            Don't have an account?
+          </Button>
+        </div>
+
         <div className="text-center my-4 border-top pt-3">
           <Button
             className="form-btn fw-bold px-4 py-2 text-uppercase bg-white"
