@@ -20,19 +20,23 @@ const ForgotPassword = () => {
     );
   }
 
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+
+    console.log(email);
+    if (email) {
+      await sendPasswordResetEmail(email);
+      if (!error) toast.success("Sent reset email");
+      else toast.error("error resenting password");
+    } else {
+      toast.error("Please enter your email");
+    }
+  };
+
   return (
     <section className="container">
       <div className="form-container mx-auto mt-5 px-2 py-5 p-sm-5">
-        <Form
-          className="form"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            if (email) {
-              await sendPasswordResetEmail(email);
-              toast("Sent reset email");
-            }
-          }}
-        >
+        <Form className="form" onSubmit={handleResetPassword}>
           <h1 className="text-center text-primary mb-3">Reset Password</h1>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
