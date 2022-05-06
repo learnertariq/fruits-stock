@@ -14,8 +14,15 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     const getProduct = async () => {
-      const res = await http.get(`/fruits/${id}`);
-      setProduct(res.data);
+      setLoading(true);
+      try {
+        const res = await http.get(`/fruits/${id}`);
+        setProduct(res.data);
+      } catch (error) {
+        //
+      } finally {
+        setLoading(false);
+      }
     };
     getProduct();
   }, []);
