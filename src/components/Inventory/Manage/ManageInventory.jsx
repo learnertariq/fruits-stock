@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Spinner, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useFruits from "../../../hooks/useFruits";
 import http from "../../../service/http";
 import "./ManageInventory.css";
 
 const ManageInventory = () => {
-  const [fruits, setFruits] = useFruits();
+  const [fruits, setFruits, loading] = useFruits();
 
   const handleDelete = async (id) => {
     const agree = window.confirm("Are you sure to delete the item?");
@@ -22,6 +22,11 @@ const ManageInventory = () => {
   return (
     <section className="container">
       <h1 className="text-center text-success mt-2 mb-4">Manage Inventory</h1>
+      {loading && (
+        <div className="container text-center my-5">
+          <Spinner animation="border" variant="info" />
+        </div>
+      )}
       <article className="all-products mx-auto">
         <Table striped bordered hover>
           <thead>

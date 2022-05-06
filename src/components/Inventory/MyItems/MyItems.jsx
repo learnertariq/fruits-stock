@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Spinner, Table } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import http from "../../../service/http";
 import auth from "../../../utils/firebase.init";
@@ -7,12 +7,20 @@ import "./MyItems.css";
 
 const MyItems = () => {
   const [fruits, setFruits] = useState([]);
-  const [user, loading, error] = useAuthState(auth);
+  const [user, authLoading, error] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getFruits = async () => {
-      const res = await http.get(`/fruits/secured`);
-      setFruits(res.data);
+      setLoading(true);
+      try {
+        const res = await http.get(`/fruits/secured`);
+        setFruits(res.data);
+      } catch (error) {
+        //
+      } finally {
+        setLoading(false);
+      }
     };
     getFruits();
   }, [user]);
@@ -31,6 +39,11 @@ const MyItems = () => {
   return (
     <section className="container">
       <h1 className="text-center text-success mt-2 mb-4">My Items</h1>
+      {loading && (
+        <div className="container text-center my-5">
+          <Spinner animation="border" variant="info" />
+        </div>
+      )}
       <article className="all-products mx-auto">
         <Table striped bordered hover>
           <thead>

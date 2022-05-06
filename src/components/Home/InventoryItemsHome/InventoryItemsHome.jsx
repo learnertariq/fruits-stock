@@ -8,14 +8,15 @@ import FruitsCard from "./FruitsCard/FruitsCard";
 import "./InventoryItemsHome.css";
 
 const InventoryItemsHome = () => {
-  const [fruits, setFruits] = useFruits();
+  const [fruits, setFruits, loading] = useFruits();
 
   return (
     <section className="container mt-5">
       <h1 className="inventory-heading mx-auto px-5 py-2 bg-warning mb-3">
         Fruits Stock
       </h1>
-      {fruits.length <= 0 && (
+
+      {loading && (
         <div className="container text-center my-5">
           <Spinner animation="border" variant="info" />
         </div>
