@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import http from "../../../service/http";
 import "./AddNewFruit.css";
@@ -13,6 +13,8 @@ const AddNewFruit = () => {
     desc: "",
     img: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(true);
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
@@ -25,12 +27,29 @@ const AddNewFruit = () => {
   const handleAdd = (e) => {
     e.preventDefault();
 
+    setError(false);
     const getFruits = async () => {
-      const res = await http.post("/fruits", fruit);
-      if (res.status === 200) toast("Successfully added item");
+      setLoading(true);
+      try {
+        const res = await http.post("/fruits", fruit);
+        if (res.status === 200) toast("Successfully added item");
+      } catch (error) {
+        console.log(error?.response?.data?.error);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
     getFruits();
   };
+
+  if (loading) {
+    return (
+      <div className="container text-center my-5">
+        <Spinner animation="border" variant="info" />
+      </div>
+    );
+  }
 
   return (
     <section className="form-container mx-auto mt-5 px-2 py-5 p-sm-5">
@@ -96,7 +115,7 @@ const AddNewFruit = () => {
             placeholder="Image Url"
           />
         </Form.Group>
-        {/* {error && <p className="text-error">{error?.message}</p>} */}
+        {error && <p className="text-error">Unexpected Error happen!</p>}
         <Button
           className="form-btn fw-bold px-4 py-2 text-uppercase"
           variant="primary"
