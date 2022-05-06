@@ -32,7 +32,7 @@ const AddNewFruit = () => {
       setLoading(true);
       try {
         const res = await http.post("/fruits", fruit);
-        if (res.status === 200) toast("Successfully added item");
+        if (res.status === 200) toast.success("Successfully added item");
       } catch (error) {
         console.log(error?.response?.data?.error);
         setError(true);

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Spinner, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import useFruits from "../../../hooks/useFruits";
 import http from "../../../service/http";
 import "./ManageInventory.css";
@@ -13,20 +14,21 @@ const ManageInventory = () => {
     const agree = window.confirm("Are you sure to delete the item?");
     if (!agree) return;
 
-    const res = await http.delete(`/fruits/${id}`);
+    try {
+      const res = await http.delete(`/fruits/${id}`);
 
-    const deletedFruit = res.data;
-    const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);
-    setFruits(newFruits);
+      const deletedFruit = res.data;
+      const newFruits = fruits.filter((f) => f._id !== deletedFruit._id);
+      setFruits(newFruits);
+      toast.success("successfully deleted");
+    } catch (error) {
+      toast.error("error deleting");
+    }
   };
   return (
     <section className="container">
       <h1 className="text-center text-success mt-2 mb-4">Manage Inventory</h1>
-      {loading && (
-        <div className="container text-center my-5">
-          <Spinner animation="border" variant="info" />
-        </div>
-      )}
+
       <article className="all-products mx-auto">
         <Table striped bordered hover>
           <thead>
@@ -54,6 +56,11 @@ const ManageInventory = () => {
             ))}
           </tbody>
         </Table>
+        {loading && (
+          <div className="container text-center my-5">
+            <Spinner animation="border" variant="info" />
+          </div>
+        )}
       </article>
       <div className="text-center my-4">
         <Link to="/inventory/new" className="btn btn-primary">
