@@ -51,6 +51,9 @@ const ProductDetails = () => {
 
       if (isNaN(newStock) || newStock < 0) return;
 
+      if (product.quantity + newStock >= 1000000)
+        return toast.error("Stock Overflowed");
+
       const res = await http.patch(`/fruits/${id}`, {
         quantity: product.quantity + newStock,
       });
@@ -95,6 +98,9 @@ const ProductDetails = () => {
               <Spinner animation="border" variant="info" />
             </div>
           )}
+          {!product.quantity && (
+            <h3 className="text-center text-danger my-0">Already Sold</h3>
+          )}
           <div className="sub-nav mt-4 mb-2 d-flex justify-content-between gap-2">
             <Button variant="success" className="border border-success">
               Description
@@ -124,7 +130,12 @@ const ProductDetails = () => {
           <hr />
           <div className="product-footer d-flex justify-content-between gap-2">
             <h2 className="text-danger mb-0">${product.price}</h2>
-            <Button onClick={reduceQuantity} variant="danger" className="">
+            <Button
+              disabled={!product.quantity}
+              onClick={reduceQuantity}
+              variant="danger"
+              className=""
+            >
               Delivered
             </Button>
           </div>
