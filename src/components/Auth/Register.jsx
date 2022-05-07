@@ -72,7 +72,7 @@ const Register = () => {
       <Form className="form" onSubmit={handleRegister}>
         <h1 className="text-center text-primary mb-3">Register</h1>
         <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Your Name</Form.Label>
           <Form.Control
             onBlur={handleBlur}
             name="name"
