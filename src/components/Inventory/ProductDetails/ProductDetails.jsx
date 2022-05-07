@@ -98,7 +98,7 @@ const ProductDetails = () => {
               <Spinner animation="border" variant="info" />
             </div>
           )}
-          {!product.quantity && (
+          {!product.quantity && !loading && (
             <h3 className="text-center text-danger my-0">Already Sold</h3>
           )}
           <div className="sub-nav mt-4 mb-2 d-flex justify-content-between gap-2">
