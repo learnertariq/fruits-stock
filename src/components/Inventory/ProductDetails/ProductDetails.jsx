@@ -79,6 +79,7 @@ const ProductDetails = () => {
           <div className="main-header row">
             <div className="col col-8">
               <h2>{product.name}</h2>
+              <p className="small text-muted my-0">ID: {product._id}</p>
               <h6 className="text-muted">{product.supplier}</h6>
             </div>
             <div className="col col-4 d-flex flex-column align-items-center">
