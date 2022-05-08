@@ -74,6 +74,7 @@ const Register = () => {
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Your Name</Form.Label>
           <Form.Control
+            required
             onBlur={handleBlur}
             name="name"
             type="text"
@@ -84,6 +85,7 @@ const Register = () => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
+            required
             onBlur={handleBlur}
             name="email"
             type="email"
@@ -94,6 +96,7 @@ const Register = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
+            required
             onBlur={handleBlur}
             name="password"
             type="password"
