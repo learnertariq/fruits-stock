@@ -101,7 +101,8 @@ const AddNewFruit = () => {
             required
             onBlur={handleBlur}
             name="desc"
-            type="text"
+            as="textarea"
+            rows={3}
             placeholder="Description"
           />
         </Form.Group>
