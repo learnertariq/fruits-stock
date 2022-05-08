@@ -5,8 +5,8 @@ import profileImg from "../../assets/about/profileImg.jpg";
 const About = () => {
   return (
     <div className="container">
-      <h1 className="text-center text-primary">About Me</h1>
-      <div className="about-me-container rounded mx-auto p-2">
+      <h1 className="text-center">About Me</h1>
+      <div className="about-me-container mx-auto p-2">
         <img className="about-me-img d-block mx-auto" src={profileImg} alt="" />
         <h2 className="text-center">Md Tariqul Islam</h2>
         <h5 className="text-secondary fw-normal text-center">
