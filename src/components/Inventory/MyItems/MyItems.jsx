@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner, Table } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import { FooterHeightContext } from "../../../App";
 import http from "../../../service/http";
 import auth from "../../../utils/firebase.init";
 import "./MyItems.css";
@@ -10,6 +11,7 @@ const MyItems = () => {
   const [fruits, setFruits] = useState([]);
   const [user, authLoading, error] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
+  const footerHeight = useContext(FooterHeightContext);
 
   useEffect(() => {
     const getFruits = async () => {
@@ -42,7 +44,10 @@ const MyItems = () => {
   };
 
   return (
-    <section className="container">
+    <section
+      className="container"
+      style={{ minHeight: `calc(100vh - ${footerHeight}px)` }}
+    >
       <h1 className="text-center text-success mt-2 mb-4">My Items</h1>
 
       <article className="all-products mx-auto">

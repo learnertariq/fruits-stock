@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import logo from "../../assets/nav/logo.png";
 import "./Footer.css";
 
-const Footer = () => {
+const Footer = ({ onChangeFooterHeight }) => {
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    onChangeFooterHeight(elementRef?.current?.clientHeight);
+  }, []);
+
   return (
-    <section className="footer py-5 px-3 mt-5">
+    <section className="footer py-5 px-3 mt-5" ref={elementRef}>
       <div className="container">
         <div className="row g-3">
           <div className="col-12 col-md-4 order-2 order-md-1 text-center">

@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./About.css";
 import profileImg from "../../assets/about/profileImg.jpg";
+import { FooterHeightContext } from "../../App";
 
 const About = () => {
+  const footerHeight = useContext(FooterHeightContext);
+
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ minHeight: `calc(100vh - ${footerHeight}px)` }}
+    >
       <h1 className="text-center">About Me</h1>
       <div className="about-me-container mx-auto p-2">
         <img className="about-me-img d-block mx-auto" src={profileImg} alt="" />

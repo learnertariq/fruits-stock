@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, createContext, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,9 +19,17 @@ import About from "./components/About/About";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import Footer from "./components/Footer/Footer";
 
+export const FooterHeightContext = createContext();
+
 function App() {
+  const [footerHeight, setFooterHeight] = useState(0);
+
+  const handleChangeFooterHeight = (height) => {
+    setFooterHeight(height);
+  };
+
   return (
-    <>
+    <FooterHeightContext.Provider value={footerHeight}>
       <ToastContainer />
       <NavBar />
       <Routes>
@@ -67,8 +75,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
-    </>
+      <Footer onChangeFooterHeight={handleChangeFooterHeight} />
+    </FooterHeightContext.Provider>
   );
 }
 

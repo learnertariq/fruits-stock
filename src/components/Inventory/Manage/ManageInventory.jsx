@@ -1,14 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FooterHeightContext } from "../../../App";
 import useFruits from "../../../hooks/useFruits";
 import http from "../../../service/http";
 import "./ManageInventory.css";
 
 const ManageInventory = () => {
   const [fruits, setFruits, loading] = useFruits();
+  const footerHeight = useContext(FooterHeightContext);
 
   const handleDelete = async (id) => {
     const agree = window.confirm("Are you sure to delete the item?");
@@ -26,7 +28,10 @@ const ManageInventory = () => {
     }
   };
   return (
-    <section className="container">
+    <section
+      className="container"
+      style={{ minHeight: `calc(100vh - ${footerHeight}px)` }}
+    >
       <h1 className="text-center text-success mt-2 mb-4">Manage Inventory</h1>
 
       <article className="all-products mx-auto">
